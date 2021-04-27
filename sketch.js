@@ -61,13 +61,13 @@ function draw(){
     box2.display();
     ground.display();
     pig1.display();
-    pig1.score();
+    //pig1.score();
     log1.display();
 
     box3.display();
     box4.display();
     pig3.display();
-    pig3.score();
+    //pig3.score();
     log3.display();
 
     box5.display();
@@ -93,8 +93,11 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-    if(keyCode === 32){
+    if(keyCode === 32  && bird.body.speed<3){
        slingshot.attach(bird.body);
+       bird.trajectory=[];
+       Matter.Body.setPosition(bird.body, {x: 200 , y: 50});
+       
     }
 }
 
@@ -105,7 +108,7 @@ async function getBackgroundImg(){
     var datetime = responseJSON.datetime;
     var hour = datetime.slice(11,13);
     
-    if(hour>=0600 && hour<=1900){
+    if(hour>=06 && hour<=19){
         bg = "sprites/bg1.png";
     }
     else{
